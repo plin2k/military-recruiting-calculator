@@ -22,6 +22,10 @@ func New(path string) (*calculator, error) {
 		target: [][]float64{},
 	}
 
+	if err := c.loadAirports("airports.csv"); err != nil {
+		return nil, errors.Wrap(err, "can't load CSV dictionary airports'")
+	}
+
 	if !strings.Contains(strings.ToLower(path), ".csv") {
 		return nil, errors.New("only CSV files")
 	}
@@ -117,63 +121,4 @@ func boolToFloat64(in bool) float64 {
 		return 1
 	}
 	return 0
-}
-
-func getGroupFloat64(group string) float64 {
-	switch strings.ToUpper(group) {
-	case "А":
-		return groupA
-	case "Б":
-		return groupB
-	case "В":
-		return groupC
-	case "Г":
-		return groupD
-	default:
-		return groupE
-	}
-}
-
-func getAirportFloat64(airport string) float64 {
-	switch strings.ToUpper(airport) {
-	case "KUF":
-		return ruKUF
-	case "SVO":
-		return ruSVO
-	case "LED":
-		return ruLED
-	case "VKO":
-		return ruVKO
-	case "KRR":
-		return ruKRR
-	case "GZP":
-		return turGZP
-	case "ESB":
-		return turESB
-	case "AYT":
-		return turAYT
-	case "BJV":
-		return turBJV
-	case "DLM":
-		return turDLM
-	case "ADB":
-		return turADB
-	case "IST":
-		return turIST
-	default:
-		return ruDME
-	}
-}
-
-func getSpecialityFloat64(speciality string) float64 {
-	switch strings.ToUpper(speciality) {
-	case "MED":
-		return specialityMedicine
-	case "FACTORY":
-		return specialityFactory
-	case "ARMY":
-		return specialityArmy
-	default:
-		return specialityIT
-	}
 }

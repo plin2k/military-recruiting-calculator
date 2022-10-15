@@ -7,20 +7,33 @@ import (
 	"strconv"
 )
 
-func (c *calculator) LoadCSVDataset(filePath string) error {
+func loadCSVFile(filePath string) ([][]string, error) {
+	var records [][]string
+
 	f, err := os.OpenFile(filePath, os.O_RDONLY, 0)
 	if err != nil {
-		return errors.Wrapf(err, "unable to read input file %s", filePath)
+		return nil, errors.Wrapf(err, "unable to read input file %s", filePath)
 	}
 	defer f.Close()
 
-	records, err := csv.NewReader(f).ReadAll()
+	records, err = csv.NewReader(f).ReadAll()
 	if err != nil {
-		return errors.Wrapf(err, "unable to parse file as CSV for %s", filePath)
+		return nil, errors.Wrapf(err, "unable to parse file as CSV for %s", filePath)
+	}
+
+	return records, nil
+
+}
+
+func (c *calculator) LoadCSVDataset(filePath string) error {
+
+	records, err := loadCSVFile(filePath)
+	if err != nil {
+		return errors.Wrapf(err, "can't load dataset from %s", filePath)
 	}
 
 	if err = c.loadCSVDatasetStrings(records); err != nil {
-		return errors.Wrap(err, "LoadCSVDataset")
+		return errors.Wrap(err, "can't load dataset")
 	}
 
 	if err = c.Apply(); err != nil {
