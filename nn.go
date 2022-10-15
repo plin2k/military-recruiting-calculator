@@ -43,7 +43,7 @@ func (c *calculator) Forward(served bool, departmental bool, invited bool, categ
 
 	var max float64 = -99999
 	pos := -1
-	// Ищем позицию нейрона с самым большим весом.
+
 	for i, value := range result {
 		if value > max {
 			max = value
@@ -51,12 +51,11 @@ func (c *calculator) Forward(served bool, departmental bool, invited bool, categ
 		}
 	}
 
-	// Теперь, в зависимости от позиции, возвращаем решение.
 	switch pos {
 	case 0:
-		return "Не призовут"
+		return "All Right"
 	default:
-		return "Призовут"
+		return "Bad News"
 	}
 }
 
