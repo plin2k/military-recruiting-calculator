@@ -1,0 +1,4 @@
+github.com/fxsjy/gonn v0.0.0-20160129023951-bb82a6c319ea h1:1xNheLZvrZbi5ukmGz176rtUZ17/j12sKgui1TrbtCs=
+github.com/fxsjy/gonn v0.0.0-20160129023951-bb82a6c319ea/go.mod h1:sTuY6zigKfMeSZqdOypwc1bej+9Ngjyj/Iqz2wmxDfc=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
