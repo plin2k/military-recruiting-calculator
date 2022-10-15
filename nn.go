@@ -15,7 +15,7 @@ type calculator struct {
 	target [][]float64
 }
 
-func New(path string) (*calculator, error) {
+func NewNN(path string) (*calculator, error) {
 	var c = &calculator{
 		nn:     gonn.DefaultNetwork(8, 16, 2, false),
 		input:  [][]float64{},
@@ -104,7 +104,6 @@ func constructCase(served bool, departmental bool, invited bool, category int, g
 }
 
 func (c *calculator) Apply() error {
-	fmt.Println(c.input)
 	c.nn.Train(c.input, c.target, 100000)
 
 	if err := os.MkdirAll("./dump", os.ModePerm); err != nil {

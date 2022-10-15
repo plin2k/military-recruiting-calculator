@@ -17,6 +17,7 @@ const (
 	specialityArmy            // Army
 	specialityFactory         // factory
 
+	defaultAirport = "SVO" // Sheremetyevo
 )
 
 var airports map[string]int
@@ -57,7 +58,7 @@ func getAirportFloat64(airport string) float64 {
 		return float64(v)
 	}
 
-	return float64(airports["SVO"])
+	return float64(airports[defaultAirport])
 }
 
 func getSpecialityFloat64(speciality string) float64 {
